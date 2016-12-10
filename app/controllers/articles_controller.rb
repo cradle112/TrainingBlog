@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_action :authenticate_user!, only: [:create, :new]
+  before_action :authenticate_user!, except: [:show, :index]
   before_action :set_article, except: [:index, :new, :create]
   # GET / articles
 
@@ -9,6 +9,7 @@ class ArticlesController < ApplicationController
 
   def show
     @article.update_visits_count
+    @comment = Comment.new
   end
 
   def new
